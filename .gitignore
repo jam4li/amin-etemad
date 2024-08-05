@@ -1,0 +1,14 @@
+*.pyc
+*~
+__pycache__
+.DS_Store
+.idea
+media
+static
+**/migrations/0*
+rmscript
+venv
+.env
+.vscode
+locale/
+logs/
