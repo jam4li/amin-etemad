@@ -2,11 +2,14 @@ FROM python:alpine
 
 ADD ./requirements.txt /product_service/requirements.txt
 
+# Install alpine's dependencies
+# libffi-dev for cryptography
 RUN set -ex \
     && apk add --no-cache --virtual \
         .build-deps \
         build-base \
-        mariadb-dev
+        mariadb-dev \
+        libffi-dev
 
 # Create python's env and Install django's dependencies
 RUN set -ex \
@@ -32,5 +35,3 @@ ENV PATH /env/bin:$PATH
 
 # run entrypoint.sh
 ENTRYPOINT ["/product_service/entrypoint.sh"]
-
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
